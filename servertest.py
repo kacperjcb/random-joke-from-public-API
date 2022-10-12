@@ -1,5 +1,6 @@
 import requests
 import json
+import datetime
 from flask import Flask, render_template, jsonify, request
 from flask_mysqldb import MySQL
 
@@ -14,14 +15,17 @@ mysql = MySQL(app)
 
 
 @app.route('/')
-def index(dbsession=None):
+def index():
     url = "https://api.chucknorris.io/jokes/random"
     response = requests.get(url)
     data = json.loads(response.text)
     d = data["value"]
+    now = datetime.datetime.now()
+    date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
+    # t=now.strftime("%m/%d/%Y, %H:%M:%S")
     cursor = mysql.connection.cursor()
-    query = '''INSERT INTO `chuck`(`id`,`value`) VALUES (%s,%s)'''
-    tuple1 = ('', d)
+    query = '''INSERT INTO `chuck`(`id`,`value`,`dataTime`) VALUES (%s,%s,%s)'''
+    tuple1 = ('', d, date_time)
     cursor.execute(query, tuple1)
     mysql.connection.commit()
     cursor.close()
