@@ -21,7 +21,7 @@ def index():
     data = json.loads(response.text)
     d = data["value"]
     now = datetime.datetime.now()
-    date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
+    date_time = now.strftime("%d/%m/%Y, %H:%M:%S")
     # t=now.strftime("%m/%d/%Y, %H:%M:%S")
     cursor = mysql.connection.cursor()
     query = '''INSERT INTO `chuck`(`id`,`value`,`dataTime`) VALUES (%s,%s,%s)'''
