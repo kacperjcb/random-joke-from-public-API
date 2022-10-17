@@ -1,7 +1,7 @@
 import requests
 import json
 import datetime
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template,
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
