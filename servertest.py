@@ -6,7 +6,7 @@ from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = '127.0.0.1'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'flask'
@@ -24,8 +24,8 @@ def index():
     date_time = now.strftime("%d/%m/%Y, %H:%M:%S")
     # t=now.strftime("%m/%d/%Y, %H:%M:%S")
     cursor = mysql.connection.cursor()
-    query = '''INSERT INTO `chuck`(`id`,`value`,`dataTime`) VALUES (%s,%s,%s)'''
-    tuple1 = ('', d, date_time)
+    query = '''INSERT INTO `chuck`(`value`,`dataTime`) VALUES (%s,%s)'''
+    tuple1 = (d, date_time)
     cursor.execute(query, tuple1)
     mysql.connection.commit()
     cursor.close()
