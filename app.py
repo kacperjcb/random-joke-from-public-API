@@ -34,7 +34,7 @@ def index():
 @app.route('/all/', methods=['GET'])
 def index2():
     cursor = mysql.connection.cursor()
-    query = '''SELECT value from chuck '''
+    query = '''SELECT distinct value from chuck '''
     cursor.execute(query)
     list_1 = list()
 
